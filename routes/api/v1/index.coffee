@@ -1,6 +1,7 @@
 express = require('express')
 db      = require("../../../lib/db")
-tegh    = require("../lib/index.js")
+tegh    = require("tegh")
+eight   = require("..../../lib/eight")
 
 weather = new require("../../../lib/weather")
 news    = new require("../../../lib/news")
@@ -32,3 +33,6 @@ router.get '/news', (req, res) ->
 
 router.get '/tegh-printers', (req, res) ->
   res.json tegh.discovery.services
+
+router.post '/eight', (req, res) ->
+  res.json eight.eight()
