@@ -6,6 +6,7 @@ module.exports = class AmqpSocket
     "door.entry"
     "statistics.power"
     "statistics.bandwidth"
+    "eight"
   ]
 
   constructor: (@server, @path) ->
