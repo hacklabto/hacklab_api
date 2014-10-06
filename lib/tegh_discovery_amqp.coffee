@@ -14,6 +14,6 @@ module.exports = class TeghDiscoveryAmqp
   _onServiceDown: (service) =>
     @exchange.publish "tegh.service.down", service
 
-  _onAmqpReady: => amqp.exchange "tegh.services", (@exchange) =>
+  _onAmqpReady: => amqp.exchange "tegh.services", type: "fanout", (@exchange) =>
     console.log "AMQP: Connected to tegh.services exchange"
     @_onServiceUp service for service in tegh.discovery.services
