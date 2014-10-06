@@ -4,7 +4,7 @@ class Eight
   constructor: ->
     amqp.on 'ready', @_onAmqpReady
 
-  _onAmqpReady: => amqp.exchange "eight", (@exchange) =>
+  _onAmqpReady: => amqp.exchange "eight", type: "fanout", (@exchange) =>
     console.log "AMQP: eight"
 
   # 8
