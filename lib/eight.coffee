@@ -9,6 +9,8 @@ class Eight
 
   # 8
   eight: =>
-    @exchange.publish "eight", eight: 8
+    message = eight: 8
+    @exchange.publish "eight", message
+    return message
 
 module.exports = new Eight()

@@ -27,7 +27,9 @@
     "chai": "*",
     "chai-spies": "*",
     "figaro": "*",
-    "tegh-client-node": "git+https://github.com/tegh/tegh-client-node.git"
+    "tegh-client": "git+https://github.com/tegh/tegh-client-node.git",
+    "pg": "*",
+    "weather.js": "*"
   },
   "engines": {
     "node": "~0.10.x",

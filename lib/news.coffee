@@ -7,23 +7,21 @@ module.exports = class News
 
   constructor: ->
     @articles = []
-    @initDB()
+    # @initDB()
 
   json: ->
     throw "news not ready" unless @articles?
     @articles
 
-  initDB: => db =>
-    db.connection
-    .query
-      "select news_feeds.url from news_feeds"
-    .execute @_onFeedList
+  initDB: =>
+    query = "select news_feeds.url from news_feeds"
+    db.query query, [], @_onFeedList
 
   _onFeedList: (e, feeds) =>
     if e?
       console.log "NEWS: Error loading news feeds from SQL"
       console.log e
-    @_initFeed feed for feed in feeds
+    @_initFeed feed for feed in feeds.rows
 
   _initFeed: (feed) ->
     reader = new FeedSub(feed.url,

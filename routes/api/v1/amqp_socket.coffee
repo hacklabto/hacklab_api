@@ -10,6 +10,7 @@ module.exports = class AmqpSocket
   ]
 
   constructor: (@server, @path) ->
+    console.log @path
     console.log "connecting?"
     # Initialize the AMQP connection
     amqp.on 'ready', @_onAmqpReady
@@ -35,10 +36,12 @@ module.exports = class AmqpSocket
 
   _onAmqpMessage: (message, headers, deliveryInfo, messageObject) =>
     console.log "AMQP: Recieved #{deliveryInfo.queue} message"
-    console.log "AMQP: #{message.data.toString()}"
+    console.log message
+    message = JSON.parse message.data.toString() if message.data?
+    console.log "AMQP: #{JSON.stringify message}"
     @broadcast
       queue: deliveryInfo.queue
-      message: JSON.parse message.data.toString()
+      message: message
 
   broadcast: (data) ->
     data = JSON.stringify data

@@ -1,4 +1,5 @@
 amqp = require('./amqp')
+tegh = require('tegh-client')
 
 module.exports = class TeghDiscoveryAmqp
   constructor: ->
@@ -9,10 +10,10 @@ module.exports = class TeghDiscoveryAmqp
     amqp.on 'ready', @_onAmqpReady
 
   _onServiceUp: (service) =>
-    @exchange.publish "tegh.service.up",   service
+    @exchange.publish "tegh.service.up",   service if @exchange?
 
   _onServiceDown: (service) =>
-    @exchange.publish "tegh.service.down", service
+    @exchange.publish "tegh.service.down", service if @exchange?
 
   _onAmqpReady: => amqp.exchange "tegh.services", type: "fanout", (@exchange) =>
     console.log "AMQP: Connected to tegh.services exchange"

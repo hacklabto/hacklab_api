@@ -17,8 +17,6 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'jade')
 
 
-app.use(cors)
-
 # enable CORS!
 # app.use('/api/v1/', enableCORS)
 
@@ -31,6 +29,9 @@ app.use(bodyParser.urlencoded extended: false)
 
 # Adding traditional routes
 app.use('/api/v1/', apiRoutes)
+
+# enable CORS!
+app.use(cors)
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->

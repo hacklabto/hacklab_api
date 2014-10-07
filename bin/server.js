@@ -8,13 +8,14 @@ var root  = path.join(path.dirname(fs.realpathSync(__filename)), '../');
 require('coffee-script/register');
 // require('coffee-script-redux/register');
 
-var app = require(path.join(root, "app"));
 var port = process.env.NODE_PORT || 3000;
 process.env.NODE_PORT = port;
 
 
 require('figaro').parse("./figaro.json", function() {
-  var server = app.listen(port, function() {
+  var app = require(path.join(root, "app"));
+  var server = app.listen(port, function(error) {
+    if (error != undefined) console.log(error);
     // Adding socket route
     AmqpSocket = require(path.join(root,'./routes/api/v1/amqp_socket'));
     new AmqpSocket(server, '/api/v1/amqp-socket');
