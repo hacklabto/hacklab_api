@@ -1,6 +1,6 @@
 express = require('express')
 db      = require("../../../lib/db")
-tegh    = require("tegh-client")
+tegh    = require("tegh-client-node")
 eight   = require("../../../lib/eight")
 
 weather = require("../../../lib/weather")
