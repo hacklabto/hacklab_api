@@ -1,5 +1,5 @@
 amqp = require('./amqp')
-tegh = require('tegh-client')
+tegh = require('tegh-client-node')
 
 module.exports = class TeghDiscoveryAmqp
   constructor: ->
@@ -7,6 +7,7 @@ module.exports = class TeghDiscoveryAmqp
     .on("serviceUp",   @_onServiceUp)
     .on("serviceDown", @_onServiceDown)
     .start()
+
     amqp.on 'ready', @_onAmqpReady
 
   _onServiceUp: (service) =>
